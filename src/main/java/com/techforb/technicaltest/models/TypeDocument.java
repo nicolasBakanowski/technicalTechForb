@@ -1,5 +1,6 @@
 package com.techforb.technicaltest.models;
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 
 @Entity
 @Table(name = "typedocument")
