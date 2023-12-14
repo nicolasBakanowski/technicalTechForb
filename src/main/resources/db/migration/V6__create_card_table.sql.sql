@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS card (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    card_number VARCHAR(16) UNIQUE NOT NULL,
+    ccv INT NOT NULL,
+    expiration_date DATE NOT NULL,
+    amount DECIMAL(10, 2) DEFAULT 0.00 NOT NULL,
+
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);
