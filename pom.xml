@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.2.0</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>com.techforb</groupId>
 	<artifactId>technicaltest</artifactId>
@@ -17,6 +17,15 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+		<dependency>
+    	    <groupId>org.springframework.security</groupId>
+    	    <artifactId>spring-security-crypto</artifactId>
+    	</dependency>
+    	<dependency>
+    	    <groupId>javax.persistence</groupId>
+    	    <artifactId>javax.persistence-api</artifactId>
+    	    <version>2.2</version> 
+    	</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -39,11 +48,6 @@
     		<artifactId>flyway-mysql</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -52,9 +56,19 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
+		</dependency>	
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
 		</dependency>
+		<dependency>
+        	<groupId>org.mockito</groupId>
+        	<artifactId>mockito-junit-jupiter</artifactId>
+        	<version>3.12.4</version> 
+        	<scope>test</scope>
+    	</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
