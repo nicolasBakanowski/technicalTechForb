@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import jakarta.validation.constraints.*;
+
 
 
 @Getter
@@ -19,21 +21,31 @@ public class User {
     @Column(name = "id")
     private Long id;
 
+    
+    @NotNull(message = "El nombre no puede estar en blanco")
+    @Size(max = 255, message = "El nombre no puede tener más de 255 caracteres")
     @Column(name = "name", nullable = false)
     private String name;
-
-    @Column(name = "last_name", nullable = false)
+   
+    @NotNull(message = "El apellido no puede estar en blanco")
+    @Size(max = 255, message = "El apellido no puede tener más de 255 caracteres")
+    @Column(name = "last_name", nullable = false)   
     private String lastName;
-
+    
+    @NotNull(message = "El número de documento no puede estar en blanco")
+    @Size(max = 20, message = "El número de documento no puede tener más de 20 caracteres")
     @Column(name = "number_document", nullable = false)
     private String numberDocument;
 
+    @NotNull(message = "La contraseña no puede estar en blanco")
+    @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
     @Column(name = "password", nullable = false)
     private String password;
-
-    @Column(name = "profile_image", nullable = false)
+   
+    @Column(name = "profile_image", nullable = true)
     private String profileImage;
-
+     
+    @NotNull(message = "El ID del tipo de documento no puede ser nulo")
     @Column(name = "type_document_id", nullable = false)
     private Long typeDocumentId;
 
