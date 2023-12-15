@@ -4,7 +4,6 @@ import com.techforb.technicaltest.models.TypeDocument;
 import com.techforb.technicaltest.models.User;
 import com.techforb.technicaltest.repositories.UserRepository;
 import com.techforb.technicaltest.repositories.TypeDocumentRepository;
-
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,7 +20,11 @@ public class UserService {
     public void createUser(User user) {
         TypeDocument typeDocument = typeDocumentRepository.findById(user.getTypeDocumentId())
             .orElseThrow(() -> new IllegalArgumentException("TypeDocument with ID " + user.getTypeDocumentId() + " not found"));
-        
+    
+        if (userRepository.existsByNumberDocument(user.getNumberDocument())) {
+            throw new IllegalArgumentException("El número de documento ya está registrado");
+        }
+
         user.setTypeDocument(typeDocument); 
         user.hashPassword();
 
