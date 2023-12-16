@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.techforb.technicaltest.dtos.LoginDto;
 import com.techforb.technicaltest.services.AuthService;
-
 import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/api/auth")
@@ -32,7 +32,7 @@ public class AuthController {
         if (token == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Error en la autenticación. Verifica tus credenciales.");
         }
-
-        return ResponseEntity.ok(token);
+        String jsonResponse = "{\"token\":\"" + token + "\"}";
+        return ResponseEntity.ok(jsonResponse);
     }
 }
