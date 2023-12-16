@@ -22,7 +22,7 @@ public class Card {
     @Column(name = "id")
     private Long id;
 
-    @NotNull(message = "El user_id no puede ser nulo")
+    @NotNull(message = "El userId no puede ser nulo")
     @Column(name = "user_id", nullable = false)
     private Long userId;
 
