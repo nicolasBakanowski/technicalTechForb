@@ -2,10 +2,10 @@ package com.techforb.technicaltest.controllers;
 
 import com.techforb.technicaltest.models.User;
 import com.techforb.technicaltest.services.UserService;
+import com.techforb.technicaltest.utils.ApiResponseUtil;
 
 import jakarta.validation.Valid;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,14 +26,13 @@ public class UserController {
 @PostMapping("/create")
 public ResponseEntity<String> createUser(@RequestBody @Valid User user, BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
-         return new ResponseEntity<>("Invalid user data", HttpStatus.BAD_REQUEST);
+            return ApiResponseUtil.badRequest("Invalid user data");
      }
     try {
-        
         userService.createUser(user);
-        return new ResponseEntity<>("User created successfully", HttpStatus.CREATED);
+        return ApiResponseUtil.success("User created successfully");
     } catch (Exception e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        return ApiResponseUtil.internalServerError(e.getMessage());
     }
 }
 }
