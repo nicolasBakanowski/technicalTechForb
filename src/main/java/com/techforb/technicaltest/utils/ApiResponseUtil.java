@@ -21,4 +21,7 @@ public class ApiResponseUtil {
         String jsonResponse = "{\"message\": \"" + message + "\"}";
         return new ResponseEntity<>(jsonResponse, status);
     }
+      public static ResponseEntity<String> created(String message) {
+        return formatResponse(message, HttpStatus.CREATED);
+    }
 }

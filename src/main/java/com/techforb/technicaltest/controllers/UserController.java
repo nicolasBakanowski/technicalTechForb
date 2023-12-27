@@ -30,7 +30,7 @@ public ResponseEntity<String> createUser(@RequestBody @Valid User user, BindingR
      }
     try {
         userService.createUser(user);
-        return ApiResponseUtil.success("User created successfully");
+        return ApiResponseUtil.created("User created successfully");
     } catch (Exception e) {
         return ApiResponseUtil.internalServerError(e.getMessage());
     }
