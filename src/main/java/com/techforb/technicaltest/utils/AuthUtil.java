@@ -1,5 +1,6 @@
 package com.techforb.technicaltest.utils;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
@@ -19,9 +20,9 @@ public class AuthUtil {
 
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public static String generateToken(String subject) {
+    public static String generateToken(Long userId) {
         return Jwts.builder()
-                .setSubject(subject)
+                .setSubject(String.valueOf(userId))
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
                 .compact();
@@ -37,6 +38,15 @@ public class AuthUtil {
             return true;
         } catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException | SignatureException | IllegalArgumentException e) {
             return false;
+        }
+    }
+    public static Long extractUserId(String token) {
+        try {
+            Claims claims = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+            String userId = claims.getSubject();
+            return Long.parseLong(userId);
+        } catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException | SignatureException | IllegalArgumentException e) {
+            return null;
         }
     }
 }
