@@ -25,7 +25,7 @@ public class AuthService {
         User user = optionalUser.get();
 
         if (AuthUtil.checkPassword(password, user.getPassword())) {
-            return AuthUtil.generateToken(user.getNumberDocument());
+            return AuthUtil.generateToken(user.getId());
         }else{
             return null;
         }
